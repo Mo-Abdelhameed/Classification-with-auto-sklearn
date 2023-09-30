@@ -96,18 +96,14 @@ async def transform_req_data_and_make_predictions(
     ids = data[model_resources.data_schema.id]
     data = data.drop(columns=model_resources.data_schema.id)
     data = run_pipeline(data, model_resources.data_schema, training=False)
+    print(data)
     logger.info("Making predictions...")
     predictions_arr = predict_with_model(
         model_resources.predictor_model,
         data,
+        return_proba=True
     )
-    if model_resources.data_schema.model_category == 'multiclass_classification':
-        predictions_df = pd.DataFrame(predictions_arr, columns=model_resources.data_schema.target_classes)
-    elif model_resources.data_schema.model_category == 'binary_classification':
-        predictions_df = pd.DataFrame(
-            np.hstack((1-predictions_arr, predictions_arr)),
-            columns=model_resources.data_schema.target_classes
-        )
+    predictions_df = pd.DataFrame(predictions_arr, columns=model_resources.data_schema.target_classes)
     predictions_df[model_resources.data_schema.id] = ids
 
     logger.info("Converting predictions dataframe into response dictionary...")

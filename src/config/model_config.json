@@ -1,8 +1,7 @@
 {
   "seed_value": 123,
-  "prediction_field_name": "prediction",
-  "task_time": 30,
-  "model_time": 10,
+  "task_time": 450,
+  "model_time": 90,
   "include": {
     "classifier": [
       "random_forest",

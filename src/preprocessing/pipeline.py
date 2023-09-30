@@ -44,11 +44,13 @@ def run_pipeline(
         dump(imputation_dict, imputation_path)
     else:
         imputation_dict = load(imputation_path)
-
         for f in schema.features:
-            input_data[f].fillna(
-                imputation_dict.get(f, input_data[f].mode()[0]), inplace=True
-            )
+            if imputation_dict[f] is not None:
+                value = imputation_dict[f]
+            else:
+                value = input_data[f].mode()[0]
+            input_data[f].fillna(value, inplace=True)
+
         input_data = normalize(input_data, schema, scaler="predict")
         input_data = encode(input_data, schema, encoder="predict")
 
