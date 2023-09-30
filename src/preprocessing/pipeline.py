@@ -22,7 +22,7 @@ def run_pipeline(
 
     Args:
         input_data (pd.DataFrame): Data to be processed.
-        schema (RegressionSchema): RegressionSchema object carrying data about the schema
+        schema (ClassificationSchema): ClassificationSchema object carrying data about the schema
         training (bool): Should be set to true if the data is for the training process.
         imputation_path (str): Path to the file containing values used for imputation.
     Returns:

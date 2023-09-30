@@ -94,7 +94,7 @@ def encode(
 
     Args:
         input_data (pd.DataFrame): The dataframe to be processed.
-        schema (RegressionSchema): The schema of the given data.
+        schema (ClassificationSchema): The schema of the given data.
         encoder: Indicates if instantiating a new encoder is required or not.
 
     Returns:
@@ -125,7 +125,7 @@ def normalize(
 
     Args:
         input_data (pd.DataFrame): The data to be normalized.
-        schema (RegressionSchema): The schema of the given data.
+        schema (ClassificationSchema): The schema of the given data.
         scaler: Indicated if a new scaler needs to be instantiated.
 
     Returns:

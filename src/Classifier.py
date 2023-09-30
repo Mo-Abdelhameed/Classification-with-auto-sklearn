@@ -57,14 +57,14 @@ class Classifier:
     """A wrapper class for the AutoKeras Classifier.
 
     This class provides a consistent interface that can be used with other
-    regressor models.
+    classifier models.
     """
 
     def __init__(self,
                  train_input: pd.DataFrame,
                  schema: ClassificationSchema,
                  ):
-        """Construct a new Regressor."""
+        """Construct a new Classifier."""
         self._is_trained: bool = False
         self.x = train_input.drop(columns=[schema.target])
         self.y = train_input[schema.target]
@@ -126,12 +126,12 @@ class Classifier:
 
     @classmethod
     def load(cls, model_dir_path: str) -> "Classifier":
-        """Load the regressor from disk.
+        """Load the classifier from disk.
 
         Args:
             model_dir_path (str): Dir path to the saved model.
         Returns:
-            Classifier: A new instance of the loaded regressor.
+            Classifier: A new instance of the loaded classifier.
         """
         return load(os.path.join(model_dir_path, PREDICTOR_FILE_NAME))
     
@@ -141,7 +141,7 @@ def predict_with_model(model: "Classifier", data: pd.DataFrame, return_proba: bo
     Predict labels for the given data.
 
     Args:
-        model (Classifier): The regressor model.
+        model (Classifier): The classifier model.
         data (pd.DataFrame): The input data.
 
     Returns:
@@ -152,10 +152,10 @@ def predict_with_model(model: "Classifier", data: pd.DataFrame, return_proba: bo
 
 def save_predictor_model(model: "Classifier", predictor_dir_path: str) -> None:
     """
-    Save the regressor model to disk.
+    Save the classifier model to disk.
 
     Args:
-        model (Classifier): The regressor model to save.
+        model (Classifier): The classifier model to save.
         predictor_dir_path (str): Dir path to which to save the model.
     """
     if not os.path.exists(predictor_dir_path):
@@ -165,12 +165,12 @@ def save_predictor_model(model: "Classifier", predictor_dir_path: str) -> None:
 
 def load_predictor_model(predictor_dir_path: str) -> "Classifier":
     """
-    Load the regressor model from disk.
+    Load the classifier model from disk.
 
     Args:
         predictor_dir_path (str): Dir path where model is saved.
 
     Returns:
-        Classifier: A new instance of the loaded regressor model.
+        Classifier: A new instance of the loaded classifier model.
     """
     return Classifier.load(predictor_dir_path)

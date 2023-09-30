@@ -6,3 +6,4 @@ test.py
 .coverage
 .vscode
 .pytest_cache/
+auto_model/
