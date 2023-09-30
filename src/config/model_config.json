@@ -1,7 +1,7 @@
 {
   "seed_value": 123,
-  "task_time": 450,
-  "model_time": 90,
+  "task_time": 180,
+  "model_time": 30,
   "include": {
     "classifier": [
       "random_forest",
