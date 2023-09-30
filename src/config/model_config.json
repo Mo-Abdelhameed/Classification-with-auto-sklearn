@@ -1,0 +1,18 @@
+{
+  "seed_value": 123,
+  "prediction_field_name": "prediction",
+  "task_time": 30,
+  "model_time": 10,
+  "include": {
+    "classifier": [
+      "random_forest",
+      "extra_trees",
+      "gradient_boosting",
+      "k_nearest_neighbors",
+      "sgd"
+    ],
+    "feature_preprocessor": [
+      "no_preprocessing"
+    ]
+  }
+}
